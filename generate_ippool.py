@@ -14,12 +14,11 @@ ip pool pppoe_${startNumber} bas local
 
 def generate_pool(ip, pool_startNum=1, dns='8.8.8.8 4.4.4.4'):
     a = IP.ip_network(ip)
-    b = list(a.hosts())
     startNumber = pool_startNum
-    gateway = b[0]
+    gateway = a[1]
     netmask = a.netmask
-    ip_start = b[1]
-    ip_end = b[-1]
+    ip_start = a[2]
+    ip_end = a[-2]
     dns = dns
 
     pool1 = Pool.substitute(
